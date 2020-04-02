@@ -19,14 +19,19 @@ Two models of publication are proposed for the STM32Cube embedded software :
 
 This **cmsis_device_h7** MCU component repo is one element of the STM32CubeH7 MCU embedded software package, providing the **cmsis device** part.
 
+## Release note
+
+Details about the content of this release are available in the release note [here](https://htmlpreview.github.io/?https://github.com/STMicroelectronics/cmsis_device_h7/blob/master/Release_Notes.html).
+
 ## Compatibility information
 
 In this table, you can find the successive versions of this CMSIS Device component, in-line with the corresponding versions of the full MCU package:
 
 CMSIS Device H7 | CMSIS Core | Was delivered in the full MCU package
 --------------- | ---------- | -------------------------------------
-Tag v1.6.0 | Tag v5.4.0 | Tag v1.5.0 (and following, if any, till next new tag)
-Tag v1.7.0 | Tag v5.4.0 | Tag v1.6.0 (and following, if any, till next new tag)
+Tag v1.6.0 | Tag v5.4.0 | Tag v1.5.0 (and following, if any, till next CMSIS tag)
+Tag v1.7.0 | Tag v5.4.0 | Tag v1.6.0 (and following, if any, till next CMSIS tag)
+Tag v1.8.0 | Tag v5.4.0 | Tag v1.7.0 (and following, if any, till next CMSIS tag)
 
 The full **STM32CubeH7** MCU package is available [here](https://github.com/STMicroelectronics/STM32CubeH7).
 
