@@ -1,7 +1,7 @@
 ;********************************************************************************
-;* File Name          : startup_stm32h730xx.s
+;* File Name          : startup_stm32h747xg.s
 ;* Author             : MCD Application Team
-;* Description        : STM32H730xx devices vector table for EWARM toolchain.
+;* Description        : STM32H747xG devices vector table for EWARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
 ;*                      - Set the initial PC == _iar_program_start,
@@ -71,7 +71,7 @@ __vector_table
         DCD     SysTick_Handler                   ; SysTick Handler
 
         ; External Interrupts
-        DCD     WWDG_IRQHandler                   ; Window WatchDog Interrupt ( wwdg1_it)                                                 
+        DCD     WWDG_IRQHandler                   ; Window WatchDog Interrupt ( wwdg1_it, wwdg2_it)                                                 
         DCD     PVD_AVD_IRQHandler                ; PVD/AVD through EXTI Line detection                                  
         DCD     TAMP_STAMP_IRQHandler             ; Tamper and TimeStamps through the EXTI line                      
         DCD     RTC_WKUP_IRQHandler               ; RTC Wakeup through the EXTI line                                 
@@ -135,8 +135,8 @@ __vector_table
         DCD     ETH_IRQHandler                    ; Ethernet                             
         DCD     ETH_WKUP_IRQHandler               ; Ethernet Wakeup through EXTI line                          
         DCD     FDCAN_CAL_IRQHandler              ; FDCAN calibration unit interrupt                                 
-        DCD     0                                 ; Reserved                                          
-        DCD     0                                 ; Reserved             
+        DCD     CM7_SEV_IRQHandler                ; CM7 Send event interrupt for CM4
+        DCD     CM4_SEV_IRQHandler                ; CM4 Send event interrupt for CM7            
         DCD     0                                 ; Reserved             
         DCD     0                                 ; Reserved                           
         DCD     DMA2_Stream5_IRQHandler           ; DMA2 Stream 5                        
@@ -149,9 +149,9 @@ __vector_table
         DCD     OTG_HS_EP1_IN_IRQHandler          ; USB OTG HS End Point 1 In                       
         DCD     OTG_HS_WKUP_IRQHandler            ; USB OTG HS Wakeup through EXTI                         
         DCD     OTG_HS_IRQHandler                 ; USB OTG HS                         
-        DCD     DCMI_PSSI_IRQHandler              ; DCMI, PSSI
-        DCD     CRYP_IRQHandler                   ; CRYP crypto                      
-        DCD     HASH_RNG_IRQHandler               ; Hash and Rng
+        DCD     DCMI_IRQHandler                   ; DCMI                                 
+        DCD     0                                 ; Reserved                                     
+        DCD     RNG_IRQHandler                    ; Rng
         DCD     FPU_IRQHandler                    ; FPU
         DCD     UART7_IRQHandler                  ; UART7
         DCD     UART8_IRQHandler                  ; UART8
@@ -162,79 +162,65 @@ __vector_table
         DCD     LTDC_IRQHandler                   ; LTDC
         DCD     LTDC_ER_IRQHandler                ; LTDC error
         DCD     DMA2D_IRQHandler                  ; DMA2D
-        DCD     0                                 ; Reserved
-        DCD     OCTOSPI1_IRQHandler               ; OCTOSPI1
+        DCD     SAI2_IRQHandler                   ; SAI2
+        DCD     QUADSPI_IRQHandler                ; QUADSPI
         DCD     LPTIM1_IRQHandler                 ; LPTIM1
         DCD     CEC_IRQHandler                    ; HDMI_CEC
         DCD     I2C4_EV_IRQHandler                ; I2C4 Event                                         
         DCD     I2C4_ER_IRQHandler                ; I2C4 Error 
         DCD     SPDIF_RX_IRQHandler               ; SPDIF_RX
-        DCD     0                                 ; Reserved
-        DCD     0                                 ; Reserved
-        DCD     0                                 ; Reserved
-        DCD     0                                 ; Reserved                 
+        DCD     OTG_FS_EP1_OUT_IRQHandler         ; USB OTG FS End Point 1 Out                      
+        DCD     OTG_FS_EP1_IN_IRQHandler          ; USB OTG FS End Point 1 In                       
+        DCD     OTG_FS_WKUP_IRQHandler            ; USB OTG FS Wakeup through EXTI                         
+        DCD     OTG_FS_IRQHandler                 ; USB OTG FS                  
         DCD     DMAMUX1_OVR_IRQHandler            ; DMAMUX1 Overrun interrupt  
-        DCD     0                                 ;  Reserved
-        DCD     0                                 ;  Reserved
-        DCD     0                                 ;  Reserved
-        DCD     0                                 ;  Reserved
-        DCD     0                                 ;  Reserved
-        DCD     0                                 ;  Reserved
-        DCD     0                                 ;  Reserved
+        DCD     HRTIM1_Master_IRQHandler          ;  HRTIM Master Timer global Interrupts                
+        DCD     HRTIM1_TIMA_IRQHandler            ;  HRTIM Timer A global Interrupt                      
+        DCD     HRTIM1_TIMB_IRQHandler            ;  HRTIM Timer B global Interrupt                      
+        DCD     HRTIM1_TIMC_IRQHandler            ;  HRTIM Timer C global Interrupt                      
+        DCD     HRTIM1_TIMD_IRQHandler            ;  HRTIM Timer D global Interrupt                      
+        DCD     HRTIM1_TIME_IRQHandler            ;  HRTIM Timer E global Interrupt                      
+        DCD     HRTIM1_FLT_IRQHandler             ;  HRTIM Fault global Interrupt 
         DCD     DFSDM1_FLT0_IRQHandler            ; DFSDM Filter0 Interrupt   
         DCD     DFSDM1_FLT1_IRQHandler            ; DFSDM Filter1 Interrupt                              
         DCD     DFSDM1_FLT2_IRQHandler            ; DFSDM Filter2 Interrupt                              
         DCD     DFSDM1_FLT3_IRQHandler            ; DFSDM Filter3 Interrupt                              
-        DCD     0                                 ;  Reserved                               
-        DCD     SWPMI1_IRQHandler                 ; Serial Wire Interface 1 global interrupt        
-        DCD     TIM15_IRQHandler                  ; TIM15 global Interrupt                          
-        DCD     TIM16_IRQHandler                  ; TIM16 global Interrupt                          
-        DCD     TIM17_IRQHandler                  ; TIM17 global Interrupt                          
-        DCD     MDIOS_WKUP_IRQHandler             ; MDIOS Wakeup  Interrupt                         
-        DCD     MDIOS_IRQHandler                  ; MDIOS global Interrupt                          
-        DCD     0                                 ;  Reserved                           
-        DCD     MDMA_IRQHandler                   ; MDMA global Interrupt                           
-        DCD     0                                 ; Reserved                            
-        DCD     SDMMC2_IRQHandler                 ; SDMMC2 global Interrupt                         
-        DCD     HSEM1_IRQHandler                  ; HSEM1 global Interrupt                          
-        DCD     0                                 ; Reserved                          
-        DCD     ADC3_IRQHandler                   ; ADC3 global Interrupt                           
+        DCD     SAI3_IRQHandler                   ;  SAI3 global Interrupt                               
+        DCD     SWPMI1_IRQHandler                 ;  Serial Wire Interface 1 global interrupt        
+        DCD     TIM15_IRQHandler                  ;  TIM15 global Interrupt                          
+        DCD     TIM16_IRQHandler                  ;  TIM16 global Interrupt                          
+        DCD     TIM17_IRQHandler                  ;  TIM17 global Interrupt                          
+        DCD     MDIOS_WKUP_IRQHandler             ;  MDIOS Wakeup  Interrupt                         
+        DCD     MDIOS_IRQHandler                  ;  MDIOS global Interrupt                          
+        DCD     JPEG_IRQHandler                   ;  JPEG global Interrupt                           
+        DCD     MDMA_IRQHandler                   ;  MDMA global Interrupt                           
+        DCD     DSI_IRQHandler                    ;  DSI global Interrupt                            
+        DCD     SDMMC2_IRQHandler                 ;  SDMMC2 global Interrupt                         
+        DCD     HSEM1_IRQHandler                  ;  HSEM1 global Interrupt                          
+        DCD     HSEM2_IRQHandler                  ;  HSEM2 global Interrupt                          
+        DCD     ADC3_IRQHandler                   ;  ADC3 global Interrupt                           
         DCD     DMAMUX2_OVR_IRQHandler            ; DMAMUX Overrun interrupt                         
-        DCD     BDMA_Channel0_IRQHandler          ; BDMA Channel 0 global Interrupt                  
-        DCD     BDMA_Channel1_IRQHandler          ; BDMA Channel 1 global Interrupt                  
-        DCD     BDMA_Channel2_IRQHandler          ; BDMA Channel 2 global Interrupt                  
-        DCD     BDMA_Channel3_IRQHandler          ; BDMA Channel 3 global Interrupt                  
-        DCD     BDMA_Channel4_IRQHandler          ; BDMA Channel 4 global Interrupt                  
-        DCD     BDMA_Channel5_IRQHandler          ; BDMA Channel 5 global Interrupt                  
-        DCD     BDMA_Channel6_IRQHandler          ; BDMA Channel 6 global Interrupt                  
-        DCD     BDMA_Channel7_IRQHandler          ; BDMA Channel 7 global Interrupt                  
-        DCD     COMP1_IRQHandler                  ; COMP1 global Interrupt                          
-        DCD     LPTIM2_IRQHandler                 ; LP TIM2 global interrupt                        
-        DCD     LPTIM3_IRQHandler                 ; LP TIM3 global interrupt                        
-        DCD     LPTIM4_IRQHandler                 ; LP TIM4 global interrupt                        
-        DCD     LPTIM5_IRQHandler                 ; LP TIM5 global interrupt                        
-        DCD     LPUART1_IRQHandler                ; LP UART1 interrupt                              
-        DCD     0                                 ; Reserved              
-        DCD     CRS_IRQHandler                    ; Clock Recovery Global Interrupt                 
+        DCD     BDMA_Channel0_IRQHandler          ;  BDMA Channel 0 global Interrupt                  
+        DCD     BDMA_Channel1_IRQHandler          ;  BDMA Channel 1 global Interrupt                  
+        DCD     BDMA_Channel2_IRQHandler          ;  BDMA Channel 2 global Interrupt                  
+        DCD     BDMA_Channel3_IRQHandler          ;  BDMA Channel 3 global Interrupt                  
+        DCD     BDMA_Channel4_IRQHandler          ;  BDMA Channel 4 global Interrupt                  
+        DCD     BDMA_Channel5_IRQHandler          ;  BDMA Channel 5 global Interrupt                  
+        DCD     BDMA_Channel6_IRQHandler          ;  BDMA Channel 6 global Interrupt                  
+        DCD     BDMA_Channel7_IRQHandler          ;  BDMA Channel 7 global Interrupt                  
+        DCD     COMP1_IRQHandler                  ;  COMP1 global Interrupt                          
+        DCD     LPTIM2_IRQHandler                 ;  LP TIM2 global interrupt                        
+        DCD     LPTIM3_IRQHandler                 ;  LP TIM3 global interrupt                        
+        DCD     LPTIM4_IRQHandler                 ;  LP TIM4 global interrupt                        
+        DCD     LPTIM5_IRQHandler                 ;  LP TIM5 global interrupt                        
+        DCD     LPUART1_IRQHandler                ;  LP UART1 interrupt                              
+        DCD     WWDG_RST_IRQHandler               ; Window Watchdog reset interrupt (exti_d2_wwdg_it, exti_d1_wwdg_it)              
+        DCD     CRS_IRQHandler                    ;  Clock Recovery Global Interrupt                 
         DCD     ECC_IRQHandler                    ; ECC diagnostic Global Interrupt
-        DCD     SAI4_IRQHandler                   ; SAI4 global interrupt                           
-        DCD     DTS_IRQHandler                    ; Digital Temperature Sensor              
-        DCD     0                                 ; Reserved                             
-        DCD     WAKEUP_PIN_IRQHandler             ; Interrupt for all 6 wake-up pins
-        DCD     OCTOSPI2_IRQHandler               ; OCTOSPI2 Interrupt
-        DCD     OTFDEC1_IRQHandler                ; OTFDEC1 Interrupt
-        DCD     OTFDEC2_IRQHandler                ; OTFDEC2 Interrupt
-        DCD     FMAC_IRQHandler                   ; FMAC Interrupt
-        DCD     CORDIC_IRQHandler                 ; CORDIC Interrupt
-        DCD     UART9_IRQHandler                  ; UART9 Interrupt
-        DCD     USART10_IRQHandler                ; USART10 Interrupt
-        DCD     I2C5_EV_IRQHandler                ; I2C5 Event Interrupt
-        DCD     I2C5_ER_IRQHandler                ; I2C5 Error Interrupt
-        DCD     FDCAN3_IT0_IRQHandler             ; FDCAN3 interrupt line 0
-        DCD     FDCAN3_IT1_IRQHandler             ; FDCAN3 interrupt line 1
-        DCD     TIM23_IRQHandler                  ; TIM23 global interrup
-        DCD     TIM24_IRQHandler                  ; TIM24 global interrup
-		
+        DCD     SAI4_IRQHandler                   ;  SAI4 global interrupt                           
+        DCD     0                                 ; Reserved              
+        DCD     HOLD_CORE_IRQHandler              ;  Hold core interrupt                             
+        DCD     WAKEUP_PIN_IRQHandler             ;  Interrupt for all 6 wake-up pins 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Default interrupt handlers.
@@ -609,6 +595,16 @@ ETH_WKUP_IRQHandler
 FDCAN_CAL_IRQHandler  
         B FDCAN_CAL_IRQHandler
 
+        PUBWEAK CM7_SEV_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+CM7_SEV_IRQHandler  
+        B CM7_SEV_IRQHandler
+
+        PUBWEAK CM4_SEV_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+CM4_SEV_IRQHandler  
+        B CM4_SEV_IRQHandler
+
         PUBWEAK DMA2_Stream5_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1)    
 DMA2_Stream5_IRQHandler  
@@ -659,20 +655,15 @@ OTG_HS_WKUP_IRQHandler
 OTG_HS_IRQHandler                  
         B OTG_HS_IRQHandler                
 
-        PUBWEAK DCMI_PSSI_IRQHandler
+        PUBWEAK DCMI_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1)
-DCMI_PSSI_IRQHandler
-        B DCMI_PSSI_IRQHandler
+DCMI_IRQHandler  
+        B DCMI_IRQHandler
 
-        PUBWEAK CRYP_IRQHandler
+        PUBWEAK RNG_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1)  
-CRYP_IRQHandler  
-        B CRYP_IRQHandler
-
-        PUBWEAK HASH_RNG_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1)  
-HASH_RNG_IRQHandler  
-        B HASH_RNG_IRQHandler
+RNG_IRQHandler  
+        B RNG_IRQHandler
 
         PUBWEAK FPU_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1)  
@@ -724,10 +715,15 @@ LTDC_ER_IRQHandler
 DMA2D_IRQHandler 
         B DMA2D_IRQHandler                  
 
-       PUBWEAK OCTOSPI1_IRQHandler
+       PUBWEAK SAI2_IRQHandler
        SECTION .text:CODE:NOROOT:REORDER(1) 
-OCTOSPI1_IRQHandler 
-        B OCTOSPI1_IRQHandler       
+SAI2_IRQHandler 
+        B SAI2_IRQHandler          
+
+       PUBWEAK QUADSPI_IRQHandler
+       SECTION .text:CODE:NOROOT:REORDER(1) 
+QUADSPI_IRQHandler 
+        B QUADSPI_IRQHandler       
         
         PUBWEAK LPTIM1_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
@@ -754,10 +750,65 @@ I2C4_ER_IRQHandler
 SPDIF_RX_IRQHandler 
         B SPDIF_RX_IRQHandler 
 
+        PUBWEAK OTG_FS_EP1_OUT_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+OTG_FS_EP1_OUT_IRQHandler 
+        B OTG_FS_EP1_OUT_IRQHandler 
+
+        PUBWEAK OTG_FS_EP1_IN_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+OTG_FS_EP1_IN_IRQHandler 
+        B OTG_FS_EP1_IN_IRQHandler
+
+        PUBWEAK OTG_FS_WKUP_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+OTG_FS_WKUP_IRQHandler 
+        B OTG_FS_WKUP_IRQHandler
+
+        PUBWEAK OTG_FS_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+OTG_FS_IRQHandler 
+        B OTG_FS_IRQHandler 
+
         PUBWEAK DMAMUX1_OVR_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 DMAMUX1_OVR_IRQHandler 
-        B DMAMUX1_OVR_IRQHandler
+        B DMAMUX1_OVR_IRQHandler 
+
+        PUBWEAK HRTIM1_Master_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+HRTIM1_Master_IRQHandler 
+        B HRTIM1_Master_IRQHandler 
+
+        PUBWEAK HRTIM1_TIMA_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+HRTIM1_TIMA_IRQHandler 
+        B HRTIM1_TIMA_IRQHandler 
+
+        PUBWEAK HRTIM1_TIMB_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+HRTIM1_TIMB_IRQHandler 
+        B HRTIM1_TIMB_IRQHandler 
+
+        PUBWEAK HRTIM1_TIMC_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+HRTIM1_TIMC_IRQHandler 
+        B HRTIM1_TIMC_IRQHandler 
+
+        PUBWEAK HRTIM1_TIMD_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+HRTIM1_TIMD_IRQHandler 
+        B HRTIM1_TIMD_IRQHandler
+
+        PUBWEAK HRTIM1_TIME_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+HRTIM1_TIME_IRQHandler 
+        B HRTIM1_TIME_IRQHandler
+
+        PUBWEAK HRTIM1_FLT_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+HRTIM1_FLT_IRQHandler 
+        B HRTIM1_FLT_IRQHandler
 
         PUBWEAK DFSDM1_FLT0_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
@@ -777,7 +828,12 @@ DFSDM1_FLT2_IRQHandler
         PUBWEAK DFSDM1_FLT3_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 DFSDM1_FLT3_IRQHandler 
-        B DFSDM1_FLT3_IRQHandler
+        B DFSDM1_FLT3_IRQHandler	
+
+        PUBWEAK SAI3_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+SAI3_IRQHandler 
+        B SAI3_IRQHandler
 
         PUBWEAK SWPMI1_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
@@ -809,10 +865,20 @@ MDIOS_WKUP_IRQHandler
 MDIOS_IRQHandler 
         B MDIOS_IRQHandler
 
+        PUBWEAK JPEG_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+JPEG_IRQHandler 
+        B JPEG_IRQHandler
+
         PUBWEAK MDMA_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 MDMA_IRQHandler 
         B MDMA_IRQHandler
+
+        PUBWEAK DSI_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+DSI_IRQHandler 
+        B DSI_IRQHandler
 
         PUBWEAK SDMMC2_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
@@ -823,6 +889,11 @@ SDMMC2_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 HSEM1_IRQHandler 
         B HSEM1_IRQHandler
+
+        PUBWEAK HSEM2_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+HSEM2_IRQHandler 
+        B HSEM2_IRQHandler
 
         PUBWEAK ADC3_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
@@ -904,6 +975,11 @@ LPTIM5_IRQHandler
 LPUART1_IRQHandler 
         B LPUART1_IRQHandler
 
+        PUBWEAK WWDG_RST_IRQHandler
+        SECTION .text:CODE:NOROOT:REORDER(1) 
+WWDG_RST_IRQHandler 
+        B WWDG_RST_IRQHandler
+
         PUBWEAK CRS_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 CRS_IRQHandler 
@@ -919,79 +995,13 @@ ECC_IRQHandler
 SAI4_IRQHandler 
         B SAI4_IRQHandler
 
-        PUBWEAK DTS_IRQHandler
+        PUBWEAK HOLD_CORE_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
-DTS_IRQHandler 
-        B DTS_IRQHandler
+HOLD_CORE_IRQHandler 
+        B HOLD_CORE_IRQHandler
 
         PUBWEAK WAKEUP_PIN_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 WAKEUP_PIN_IRQHandler 
-        B WAKEUP_PIN_IRQHandler
-
-        PUBWEAK OCTOSPI2_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-OCTOSPI2_IRQHandler 
-        B OCTOSPI2_IRQHandler
-
-        PUBWEAK OTFDEC1_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-OTFDEC1_IRQHandler 
-        B OTFDEC1_IRQHandler
-
-        PUBWEAK OTFDEC2_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-OTFDEC2_IRQHandler 
-        B OTFDEC2_IRQHandler
-
-        PUBWEAK FMAC_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-FMAC_IRQHandler 
-        B FMAC_IRQHandler
-
-        PUBWEAK CORDIC_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-CORDIC_IRQHandler 
-        B CORDIC_IRQHandler
-
-        PUBWEAK UART9_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-UART9_IRQHandler 
-        B UART9_IRQHandler
-
-        PUBWEAK USART10_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-USART10_IRQHandler 
-        B USART10_IRQHandler
-
-        PUBWEAK I2C5_EV_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-I2C5_EV_IRQHandler 
-        B I2C5_EV_IRQHandler
-
-        PUBWEAK I2C5_ER_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-I2C5_ER_IRQHandler 
-        B I2C5_ER_IRQHandler
-
-        PUBWEAK FDCAN3_IT0_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-FDCAN3_IT0_IRQHandler 
-        B FDCAN3_IT0_IRQHandler
-
-        PUBWEAK FDCAN3_IT1_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-FDCAN3_IT1_IRQHandler 
-        B FDCAN3_IT1_IRQHandler
-
-        PUBWEAK TIM23_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-TIM23_IRQHandler 
-        B TIM23_IRQHandler
-
-        PUBWEAK TIM24_IRQHandler
-        SECTION .text:CODE:NOROOT:REORDER(1) 
-TIM24_IRQHandler 
-        B TIM24_IRQHandler			
-		
+        B WAKEUP_PIN_IRQHandler 
         END

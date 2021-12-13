@@ -1,7 +1,7 @@
 ;********************************************************************************
-;* File Name          : startup_stm32h733xx.s
+;* File Name          : startup_stm32h747xg.s
 ;* @author  MCD Application Team
-;* Description        : STM32H7xx devices vector table for MDK-ARM toolchain. 
+;* Description        : STM32H7xg devices vector table for MDK-ARM toolchain. 
 ;*                      This module performs:
 ;*                      - Set the initial SP
 ;*                      - Set the initial PC == Reset_Handler
@@ -75,7 +75,7 @@ __Vectors       DCD     __initial_sp                      ; Top of Stack
                 DCD     SysTick_Handler                   ; SysTick Handler
 
                 ; External Interrupts
-                DCD     WWDG_IRQHandler                   ; Window WatchDog interrupt ( wwdg1_it)                                         
+                DCD     WWDG_IRQHandler                   ; Window WatchDog interrupt ( wwdg1_it, wwdg2_it)                                         
                 DCD     PVD_AVD_IRQHandler                ; PVD/AVD through EXTI Line detection                        
                 DCD     TAMP_STAMP_IRQHandler             ; Tamper and TimeStamps through the EXTI line            
                 DCD     RTC_WKUP_IRQHandler               ; RTC Wakeup through the EXTI line                       
@@ -139,8 +139,8 @@ __Vectors       DCD     __initial_sp                      ; Top of Stack
                 DCD     ETH_IRQHandler                    ; Ethernet                        
                 DCD     ETH_WKUP_IRQHandler               ; Ethernet Wakeup through EXTI line              
                 DCD     FDCAN_CAL_IRQHandler              ; FDCAN calibration unit interrupt                        
-                DCD     0                                 ; Reserved                              
-                DCD     0                                 ; Reserved 
+                DCD     CM7_SEV_IRQHandler                ; CM7 Send event interrupt for CM4                              
+                DCD     CM4_SEV_IRQHandler                ; CM4 Send event interrupt for CM7 
                 DCD     0                                 ; Reserved 
                 DCD     0                                 ; Reserved                      
                 DCD     DMA2_Stream5_IRQHandler           ; DMA2 Stream 5                   
@@ -153,9 +153,9 @@ __Vectors       DCD     __initial_sp                      ; Top of Stack
                 DCD     OTG_HS_EP1_IN_IRQHandler          ; USB OTG HS End Point 1 In                       
                 DCD     OTG_HS_WKUP_IRQHandler            ; USB OTG HS Wakeup through EXTI                         
                 DCD     OTG_HS_IRQHandler                 ; USB OTG HS                    
-                DCD     DCMI_PSSI_IRQHandler              ; DCMI, PSSI                            
-                DCD     CRYP_IRQHandler                   ; CRYP                                     
-                DCD     HASH_RNG_IRQHandler               ; Hash and Rng
+                DCD     DCMI_IRQHandler                   ; DCMI                            
+                DCD     0                                 ; Reserved                                     
+                DCD     RNG_IRQHandler                    ; Rng
                 DCD     FPU_IRQHandler                    ; FPU
                 DCD     UART7_IRQHandler                  ; UART7
                 DCD     UART8_IRQHandler                  ; UART8
@@ -166,78 +166,66 @@ __Vectors       DCD     __initial_sp                      ; Top of Stack
                 DCD     LTDC_IRQHandler                   ; LTDC
                 DCD     LTDC_ER_IRQHandler                ; LTDC error
                 DCD     DMA2D_IRQHandler                  ; DMA2D
-                DCD     0                                 ; Reserved
-                DCD     OCTOSPI1_IRQHandler               ; OCTOSPI1
+                DCD     SAI2_IRQHandler                   ; SAI2
+                DCD     QUADSPI_IRQHandler                ; QUADSPI
                 DCD     LPTIM1_IRQHandler                 ; LPTIM1
                 DCD     CEC_IRQHandler                    ; HDMI_CEC
                 DCD     I2C4_EV_IRQHandler                ; I2C4 Event                             
                 DCD     I2C4_ER_IRQHandler                ; I2C4 Error 
                 DCD     SPDIF_RX_IRQHandler               ; SPDIF_RX
-                DCD     0                                 ; Reserved                     
-                DCD     0                                 ; Reserved                       
-                DCD     0                                 ; Reserved                         
-                DCD     0                                 ; Reserved                 
+                DCD     OTG_FS_EP1_OUT_IRQHandler         ; USB OTG FS End Point 1 Out                      
+                DCD     OTG_FS_EP1_IN_IRQHandler          ; USB OTG FS End Point 1 In                       
+                DCD     OTG_FS_WKUP_IRQHandler            ; USB OTG FS Wakeup through EXTI                         
+                DCD     OTG_FS_IRQHandler                 ; USB OTG FS                 
                 DCD     DMAMUX1_OVR_IRQHandler            ; DMAMUX1 Overrun interrupt  
-                DCD     0                                 ; Reserved                              
-                DCD     0                                 ; Reserved                                    
-                DCD     0                                 ; Reserved                                   
-                DCD     0                                 ; Reserved                                   
-                DCD     0                                 ; Reserved                                    
-                DCD     0                                 ; Reserved                                    
-                DCD     0                                 ; Reserved 
+                DCD     HRTIM1_Master_IRQHandler          ;  HRTIM Master Timer global Interrupts                              
+                DCD     HRTIM1_TIMA_IRQHandler            ;  HRTIM Timer A global Interrupt                                    
+                DCD     HRTIM1_TIMB_IRQHandler            ;  HRTIM Timer B global Interrupt                                    
+                DCD     HRTIM1_TIMC_IRQHandler            ;  HRTIM Timer C global Interrupt                                    
+                DCD     HRTIM1_TIMD_IRQHandler            ;  HRTIM Timer D global Interrupt                                    
+                DCD     HRTIM1_TIME_IRQHandler            ;  HRTIM Timer E global Interrupt                                    
+                DCD     HRTIM1_FLT_IRQHandler             ;  HRTIM Fault global Interrupt 
                 DCD     DFSDM1_FLT0_IRQHandler            ; DFSDM Filter0 Interrupt   
                 DCD     DFSDM1_FLT1_IRQHandler            ; DFSDM Filter1 Interrupt                                            
                 DCD     DFSDM1_FLT2_IRQHandler            ; DFSDM Filter2 Interrupt                                            
                 DCD     DFSDM1_FLT3_IRQHandler            ; DFSDM Filter3 Interrupt                                                                                    
-                DCD     0                                 ; Reserved                                            
-                DCD     SWPMI1_IRQHandler                 ; Serial Wire Interface 1 global interrupt                          
-                DCD     TIM15_IRQHandler                  ; TIM15 global Interrupt                                            
-                DCD     TIM16_IRQHandler                  ; TIM16 global Interrupt                                            
-                DCD     TIM17_IRQHandler                  ; TIM17 global Interrupt                                            
-                DCD     MDIOS_WKUP_IRQHandler             ; MDIOS Wakeup  Interrupt                                           
-                DCD     MDIOS_IRQHandler                  ; MDIOS global Interrupt                                            
-                DCD     0                                 ; Reserved                                             
-                DCD     MDMA_IRQHandler                   ; MDMA global Interrupt                                             
-                DCD     0                                 ; Reserved                                               
-                DCD     SDMMC2_IRQHandler                 ; SDMMC2 global Interrupt                                           
-                DCD     HSEM1_IRQHandler                  ; HSEM1 global Interrupt                                             
-                DCD     0                                 ; Reserved                                              
-                DCD     ADC3_IRQHandler                   ; ADC3 global Interrupt                                              
+                DCD     SAI3_IRQHandler                   ;  SAI3 global Interrupt                                             
+                DCD     SWPMI1_IRQHandler                 ;  Serial Wire Interface 1 global interrupt                          
+                DCD     TIM15_IRQHandler                  ;  TIM15 global Interrupt                                            
+                DCD     TIM16_IRQHandler                  ;  TIM16 global Interrupt                                            
+                DCD     TIM17_IRQHandler                  ;  TIM17 global Interrupt                                            
+                DCD     MDIOS_WKUP_IRQHandler             ;  MDIOS Wakeup  Interrupt                                           
+                DCD     MDIOS_IRQHandler                  ;  MDIOS global Interrupt                                            
+                DCD     JPEG_IRQHandler                   ;  JPEG global Interrupt                                             
+                DCD     MDMA_IRQHandler                   ;  MDMA global Interrupt                                             
+                DCD     DSI_IRQHandler                    ;  DSI global Interrupt                                              
+                DCD     SDMMC2_IRQHandler                 ;  SDMMC2 global Interrupt                                           
+                DCD     HSEM1_IRQHandler                  ;  HSEM1 global Interrupt                                             
+                DCD     HSEM2_IRQHandler                  ;  HSEM2 global Interrupt                                             
+                DCD     ADC3_IRQHandler                   ;  ADC3 global Interrupt                                              
                 DCD     DMAMUX2_OVR_IRQHandler            ; DMAMUX Overrun interrupt                                           
-                DCD     BDMA_Channel0_IRQHandler          ; BDMA Channel 0 global Interrupt                                    
-                DCD     BDMA_Channel1_IRQHandler          ; BDMA Channel 1 global Interrupt                                    
-                DCD     BDMA_Channel2_IRQHandler          ; BDMA Channel 2 global Interrupt                                    
-                DCD     BDMA_Channel3_IRQHandler          ; BDMA Channel 3 global Interrupt                                    
-                DCD     BDMA_Channel4_IRQHandler          ; BDMA Channel 4 global Interrupt                                    
-                DCD     BDMA_Channel5_IRQHandler          ; BDMA Channel 5 global Interrupt                                    
-                DCD     BDMA_Channel6_IRQHandler          ; BDMA Channel 6 global Interrupt                                    
-                DCD     BDMA_Channel7_IRQHandler          ; BDMA Channel 7 global Interrupt                                    
-                DCD     COMP1_IRQHandler                  ; COMP1 global Interrupt                                            
-                DCD     LPTIM2_IRQHandler                 ; LP TIM2 global interrupt                                          
-                DCD     LPTIM3_IRQHandler                 ; LP TIM3 global interrupt                                          
-                DCD     LPTIM4_IRQHandler                 ; LP TIM4 global interrupt                                          
-                DCD     LPTIM5_IRQHandler                 ; LP TIM5 global interrupt                                          
-                DCD     LPUART1_IRQHandler                ; LP UART1 interrupt                                                
-                DCD     0                                 ; Reserved                                                                              
-                DCD     CRS_IRQHandler                    ; Clock Recovery Global Interrupt                                   
+                DCD     BDMA_Channel0_IRQHandler          ;  BDMA Channel 0 global Interrupt                                    
+                DCD     BDMA_Channel1_IRQHandler          ;  BDMA Channel 1 global Interrupt                                    
+                DCD     BDMA_Channel2_IRQHandler          ;  BDMA Channel 2 global Interrupt                                    
+                DCD     BDMA_Channel3_IRQHandler          ;  BDMA Channel 3 global Interrupt                                    
+                DCD     BDMA_Channel4_IRQHandler          ;  BDMA Channel 4 global Interrupt                                    
+                DCD     BDMA_Channel5_IRQHandler          ;  BDMA Channel 5 global Interrupt                                    
+                DCD     BDMA_Channel6_IRQHandler          ;  BDMA Channel 6 global Interrupt                                    
+                DCD     BDMA_Channel7_IRQHandler          ;  BDMA Channel 7 global Interrupt                                    
+                DCD     COMP1_IRQHandler                  ;  COMP1 global Interrupt                                            
+                DCD     LPTIM2_IRQHandler                 ;  LP TIM2 global interrupt                                          
+                DCD     LPTIM3_IRQHandler                 ;  LP TIM3 global interrupt                                          
+                DCD     LPTIM4_IRQHandler                 ;  LP TIM4 global interrupt                                          
+                DCD     LPTIM5_IRQHandler                 ;  LP TIM5 global interrupt                                          
+                DCD     LPUART1_IRQHandler                ;  LP UART1 interrupt                                                
+                DCD     WWDG_RST_IRQHandler               ; Window Watchdog reset interrupt (exti_d2_wwdg_it, exti_d1_wwdg_it)                                
+                DCD     CRS_IRQHandler                    ;  Clock Recovery Global Interrupt                                   
                 DCD     ECC_IRQHandler                    ; ECC diagnostic Global Interrupt                                              
-                DCD     SAI4_IRQHandler                   ; SAI4 global interrupt                                                
-                DCD     DTS_IRQHandler                    ; DTS  interrupt                                
-                DCD     0                                 ; Reserved                                    
-                DCD     WAKEUP_PIN_IRQHandler             ; Interrupt for all 6 wake-up pins 
-                DCD     OCTOSPI2_IRQHandler               ; OCTOSPI2 Interrupt
-                DCD     OTFDEC1_IRQHandler                ; OTFDEC1 Interrupt                
-                DCD     OTFDEC2_IRQHandler                ; OTFDEC2 Interrupt
-                DCD     FMAC_IRQHandler                   ; FMAC Interrupt
-                DCD     CORDIC_IRQHandler                 ; CORDIC Interrupt
-                DCD     UART9_IRQHandler                  ; UART9 Interrupt
-                DCD     USART10_IRQHandler                ; UART10 Interrupt
-                DCD     I2C5_EV_IRQHandler                ; I2C5 Event Interrupt
-                DCD     I2C5_ER_IRQHandler                ; I2C5 Error Interrupt
-                DCD     FDCAN3_IT0_IRQHandler             ; FDCAN3 interrupt line 0
-                DCD     FDCAN3_IT1_IRQHandler             ; FDCAN3 interrupt line 1
-                DCD     TIM23_IRQHandler                  ; TIM23 global interrup
-                DCD     TIM24_IRQHandler                  ; TIM24 global interrup
+                DCD     SAI4_IRQHandler                   ;  SAI4 global interrupt                                                
+                DCD     0                                 ; Reserved                                
+                DCD     HOLD_CORE_IRQHandler              ;  Hold core interrupt                                   
+                DCD     WAKEUP_PIN_IRQHandler             ;  Interrupt for all 6 wake-up pins 
+                
 
 __Vectors_End
 
@@ -367,6 +355,8 @@ Default_Handler PROC
                 EXPORT  ETH_IRQHandler                    [WEAK]                                         
                 EXPORT  ETH_WKUP_IRQHandler               [WEAK]                     
                 EXPORT  FDCAN_CAL_IRQHandler              [WEAK]                                                                                                                                                                              
+                EXPORT  CM7_SEV_IRQHandler                [WEAK]                                                                                                                                                                              
+                EXPORT  CM4_SEV_IRQHandler                [WEAK]                                                                                                                                                                              
                 EXPORT  DMA2_Stream5_IRQHandler           [WEAK]                                   
                 EXPORT  DMA2_Stream6_IRQHandler           [WEAK]                                   
                 EXPORT  DMA2_Stream7_IRQHandler           [WEAK]                                   
@@ -377,9 +367,8 @@ Default_Handler PROC
                 EXPORT  OTG_HS_EP1_IN_IRQHandler          [WEAK]                      
                 EXPORT  OTG_HS_WKUP_IRQHandler            [WEAK]                        
                 EXPORT  OTG_HS_IRQHandler                 [WEAK]                                      
-                EXPORT  DCMI_PSSI_IRQHandler              [WEAK]
-                EXPORT  CRYP_IRQHandler                   [WEAK]				
-                EXPORT  HASH_RNG_IRQHandler               [WEAK]
+                EXPORT  DCMI_IRQHandler                   [WEAK]                                             
+                EXPORT  RNG_IRQHandler                    [WEAK]
                 EXPORT  FPU_IRQHandler                    [WEAK]
                 EXPORT  UART7_IRQHandler                  [WEAK]
                 EXPORT  UART8_IRQHandler                  [WEAK]
@@ -389,27 +378,43 @@ Default_Handler PROC
                 EXPORT  SAI1_IRQHandler                   [WEAK]
                 EXPORT  LTDC_IRQHandler                   [WEAK]
                 EXPORT  LTDC_ER_IRQHandler                [WEAK]
-                EXPORT  DMA2D_IRQHandler                  [WEAK]   
-                EXPORT  OCTOSPI1_IRQHandler               [WEAK]
+                EXPORT  DMA2D_IRQHandler                  [WEAK]
+                EXPORT  SAI2_IRQHandler                   [WEAK]   
+                EXPORT  QUADSPI_IRQHandler                [WEAK]
                 EXPORT  LPTIM1_IRQHandler                 [WEAK]
                 EXPORT  CEC_IRQHandler                    [WEAK]   
                 EXPORT  I2C4_EV_IRQHandler                [WEAK]
                 EXPORT  I2C4_ER_IRQHandler                [WEAK] 
                 EXPORT  SPDIF_RX_IRQHandler               [WEAK]
+                EXPORT  OTG_FS_EP1_OUT_IRQHandler         [WEAK]
+                EXPORT  OTG_FS_EP1_IN_IRQHandler          [WEAK]                      
+                EXPORT  OTG_FS_WKUP_IRQHandler            [WEAK]                      
+                EXPORT  OTG_FS_IRQHandler                 [WEAK]                        
                 EXPORT  DMAMUX1_OVR_IRQHandler            [WEAK]
+                EXPORT  HRTIM1_Master_IRQHandler          [WEAK] 
+                EXPORT  HRTIM1_TIMA_IRQHandler            [WEAK]                                      
+                EXPORT  HRTIM1_TIMB_IRQHandler            [WEAK]                                      
+                EXPORT  HRTIM1_TIMC_IRQHandler            [WEAK]                                      
+                EXPORT  HRTIM1_TIMD_IRQHandler            [WEAK]                                      
+                EXPORT  HRTIM1_TIME_IRQHandler            [WEAK]                                      
+                EXPORT  HRTIM1_FLT_IRQHandler             [WEAK]
                 EXPORT  DFSDM1_FLT0_IRQHandler            [WEAK] 
                 EXPORT  DFSDM1_FLT1_IRQHandler            [WEAK]                                             
                 EXPORT  DFSDM1_FLT2_IRQHandler            [WEAK]                                             
-                EXPORT  DFSDM1_FLT3_IRQHandler            [WEAK]                                                                                                                                     
+                EXPORT  DFSDM1_FLT3_IRQHandler            [WEAK]                                                                                        
+                EXPORT  SAI3_IRQHandler                   [WEAK]                                             
                 EXPORT  SWPMI1_IRQHandler                 [WEAK]                            
                 EXPORT  TIM15_IRQHandler                  [WEAK]                                             
                 EXPORT  TIM16_IRQHandler                  [WEAK]                                              
                 EXPORT  TIM17_IRQHandler                  [WEAK]                                            
                 EXPORT  MDIOS_WKUP_IRQHandler             [WEAK]                                             
                 EXPORT  MDIOS_IRQHandler                  [WEAK]                                              
-                EXPORT  MDMA_IRQHandler                   [WEAK]                                                                                             
+                EXPORT  JPEG_IRQHandler                   [WEAK]                                               
+                EXPORT  MDMA_IRQHandler                   [WEAK]                                               
+                EXPORT  DSI_IRQHandler                    [WEAK]                                               
                 EXPORT  SDMMC2_IRQHandler                 [WEAK]                                             
-                EXPORT  HSEM1_IRQHandler                  [WEAK]                                                                                                             
+                EXPORT  HSEM1_IRQHandler                  [WEAK]                                               
+                EXPORT  HSEM2_IRQHandler                  [WEAK]                                               
                 EXPORT  ADC3_IRQHandler                   [WEAK]                                                
                 EXPORT  DMAMUX2_OVR_IRQHandler            [WEAK]                                            
                 EXPORT  BDMA_Channel0_IRQHandler          [WEAK]                                      
@@ -426,24 +431,13 @@ Default_Handler PROC
                 EXPORT  LPTIM4_IRQHandler                 [WEAK]                                            
                 EXPORT  LPTIM5_IRQHandler                 [WEAK]                                            
                 EXPORT  LPUART1_IRQHandler                [WEAK]                                                  
+                EXPORT  WWDG_RST_IRQHandler               [WEAK]                                
                 EXPORT  CRS_IRQHandler                    [WEAK]
-                EXPORT  ECC_IRQHandler                    [WEAK] 				
-                EXPORT  SAI4_IRQHandler                   [WEAK]
-                EXPORT  DTS_IRQHandler                    [WEAK] 				
+                EXPORT  ECC_IRQHandler                    [WEAK]				
+                EXPORT  SAI4_IRQHandler                   [WEAK]                                                  
+                EXPORT  HOLD_CORE_IRQHandler              [WEAK]                                   
                 EXPORT  WAKEUP_PIN_IRQHandler             [WEAK] 
-                EXPORT  OCTOSPI2_IRQHandler               [WEAK]
-                EXPORT  OTFDEC1_IRQHandler                [WEAK]
-                EXPORT  OTFDEC2_IRQHandler                [WEAK]
-                EXPORT  FMAC_IRQHandler                   [WEAK]
-                EXPORT  CORDIC_IRQHandler                 [WEAK]
-                EXPORT  UART9_IRQHandler                  [WEAK]
-                EXPORT  USART10_IRQHandler                [WEAK]
-                EXPORT  I2C5_EV_IRQHandler                [WEAK]
-                EXPORT  I2C5_ER_IRQHandler                [WEAK]
-                EXPORT  FDCAN3_IT0_IRQHandler             [WEAK]
-                EXPORT  FDCAN3_IT1_IRQHandler             [WEAK]
-                EXPORT  TIM23_IRQHandler                  [WEAK]
-                EXPORT  TIM24_IRQHandler                  [WEAK]
+
 
 WWDG_IRQHandler                                                          
 PVD_AVD_IRQHandler                                             
@@ -507,7 +501,9 @@ DMA2_Stream3_IRQHandler
 DMA2_Stream4_IRQHandler                                        
 ETH_IRQHandler                                                         
 ETH_WKUP_IRQHandler                                
-FDCAN_CAL_IRQHandler                                                                                                                                                                                                                            
+FDCAN_CAL_IRQHandler
+CM7_SEV_IRQHandler
+CM4_SEV_IRQHandler                                                                                                                                                                                                                             
 DMA2_Stream5_IRQHandler                                          
 DMA2_Stream6_IRQHandler                                          
 DMA2_Stream7_IRQHandler                                          
@@ -518,9 +514,8 @@ OTG_HS_EP1_OUT_IRQHandler
 OTG_HS_EP1_IN_IRQHandler 
 OTG_HS_WKUP_IRQHandler   
 OTG_HS_IRQHandler        
-DCMI_PSSI_IRQHandler
-CRYP_IRQHandler                                                            
-HASH_RNG_IRQHandler
+DCMI_IRQHandler                                                            
+RNG_IRQHandler
 FPU_IRQHandler  
 UART7_IRQHandler                  
 UART8_IRQHandler                  
@@ -530,27 +525,43 @@ SPI6_IRQHandler
 SAI1_IRQHandler                   
 LTDC_IRQHandler                   
 LTDC_ER_IRQHandler                 
-DMA2D_IRQHandler       
-OCTOSPI1_IRQHandler
+DMA2D_IRQHandler   
+SAI2_IRQHandler        
+QUADSPI_IRQHandler
 LPTIM1_IRQHandler
 CEC_IRQHandler
 I2C4_EV_IRQHandler
 I2C4_ER_IRQHandler
-SPDIF_RX_IRQHandler      
-DMAMUX1_OVR_IRQHandler 
+SPDIF_RX_IRQHandler
+OTG_FS_EP1_OUT_IRQHandler
+OTG_FS_EP1_IN_IRQHandler 
+OTG_FS_WKUP_IRQHandler   
+OTG_FS_IRQHandler        
+DMAMUX1_OVR_IRQHandler
+HRTIM1_Master_IRQHandler               
+HRTIM1_TIMA_IRQHandler                                                      
+HRTIM1_TIMB_IRQHandler                                                      
+HRTIM1_TIMC_IRQHandler                                                      
+HRTIM1_TIMD_IRQHandler                                                      
+HRTIM1_TIME_IRQHandler                                                      
+HRTIM1_FLT_IRQHandler 
 DFSDM1_FLT0_IRQHandler
 DFSDM1_FLT1_IRQHandler                                                                
 DFSDM1_FLT2_IRQHandler                                                                
-DFSDM1_FLT3_IRQHandler                                                                                                                                                                                                   
+DFSDM1_FLT3_IRQHandler                                                                                                                                
+SAI3_IRQHandler                                                                    
 SWPMI1_IRQHandler                                                 
 TIM15_IRQHandler                                                                   
 TIM16_IRQHandler                                                                    
 TIM17_IRQHandler                                                                  
 MDIOS_WKUP_IRQHandler                                                              
-MDIOS_IRQHandler                                                                      
-MDMA_IRQHandler                                                                                                                                            
+MDIOS_IRQHandler                                                                    
+JPEG_IRQHandler                                                                      
+MDMA_IRQHandler                                                                      
+DSI_IRQHandler                                                                       
 SDMMC2_IRQHandler                                                                  
-HSEM1_IRQHandler                                                                                                                                       
+HSEM1_IRQHandler                                                                     
+HSEM2_IRQHandler                                                                     
 ADC3_IRQHandler                                                                       
 DMAMUX2_OVR_IRQHandler                                                            
 BDMA_Channel0_IRQHandler                                                     
@@ -566,25 +577,13 @@ LPTIM2_IRQHandler
 LPTIM3_IRQHandler                                                                 
 LPTIM4_IRQHandler                                                                 
 LPTIM5_IRQHandler                                                                 
-LPUART1_IRQHandler                                                                                                                         
+LPUART1_IRQHandler                                                                      
+WWDG_RST_IRQHandler                                                   
 CRS_IRQHandler
-ECC_IRQHandler                                                            
-SAI4_IRQHandler
-DTS_IRQHandler      
+ECC_IRQHandler                                                           
+SAI4_IRQHandler      
+HOLD_CORE_IRQHandler 
 WAKEUP_PIN_IRQHandler
-OCTOSPI2_IRQHandler
-OTFDEC1_IRQHandler
-OTFDEC2_IRQHandler
-FMAC_IRQHandler
-CORDIC_IRQHandler
-UART9_IRQHandler
-USART10_IRQHandler
-I2C5_EV_IRQHandler
-I2C5_ER_IRQHandler
-FDCAN3_IT0_IRQHandler
-FDCAN3_IT1_IRQHandler
-TIM23_IRQHandler
-TIM24_IRQHandler
 
                 B       .
 
