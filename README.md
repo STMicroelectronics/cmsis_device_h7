@@ -1,5 +1,7 @@
 # STM32CubeH7 CMSIS Device MCU Component
 
+![latest tag](https://img.shields.io/github/v/tag/STMicroelectronics/cmsis_device_h7.svg?color=brightgreen)
+
 ## Overview
 
 **STM32Cube** is an STMicroelectronics original initiative to ease the developers life by reducing efforts, time and cost.
@@ -34,12 +36,11 @@ Tag v1.7.0      | Tag v5.4.0 | Tag v1.6.0
 Tag v1.8.0      | Tag v5.4.0 | Tag v1.7.0
 Tag v1.9.0      | Tag v5.4.0 | Tag v1.8.0
 Tag v1.10.0     | Tag v5.6.0 | Tag v1.9.0
-Tag v1.10.1     | Tag v5.6.0 | Tag v1.9.1 (and following, if any, till next HAL tag)
+Tag v1.10.1     | Tag v5.6.0 | Tag v1.9.1
+Tag v1.10.2     | Tag v5.6.0 | Tag v1.10.0 (and following, if any, till next CMSIS tag)
 
 The full **STM32CubeH7** MCU package is available [here](https://github.com/STMicroelectronics/STM32CubeH7).
 
 ## Troubleshooting
 
-If you have any issue with the **Software content** of this repo, you can [file an issue on Github](https://github.com/STMicroelectronics/cmsis_device_h7/issues/new).
-
-For any other question related to the product, the tools, the environment, you can submit a topic on the [ST Community/STM32 MCUs forum](https://community.st.com/s/group/0F90X000000AXsASAW/stm32-mcus).
+Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide.
