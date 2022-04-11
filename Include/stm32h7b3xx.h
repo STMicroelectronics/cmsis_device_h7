@@ -658,6 +658,20 @@ typedef struct
   __IO uint32_t  CMDR;      /*!< MDMA channel x Mask Data register,                    Address offset: 0x74 */
 }MDMA_Channel_TypeDef;
 
+typedef struct
+{
+  __IO uint32_t  CTCR;      /*!< Loaded into CTCR when linked list in CLAR is followed */
+  __IO uint32_t  CBNDTR;    /*!< Loaded into CBNDTR when linked list in CLAR is followed */
+  __IO uint32_t  CSAR;      /*!< Loaded into CSAR when linked list in CLAR is followed */
+  __IO uint32_t  CDAR;      /*!< Loaded into CDAR when linked list in CLAR is followed */
+  __IO uint32_t  CBRUR;     /*!< Loaded into CBRUR when linked list in CLAR is followed */
+  __IO uint32_t  CLAR;      /*!< Loaded into CLAR to set up the next link, or 0 to terminate the list */
+  __IO uint32_t  CTBR;      /*!< Loaded into CTBR when linked list in CLAR is followed */
+  uint32_t       RESERVED0;
+  __IO uint32_t  CMAR;      /*!< Loaded into CMAR when linked list in CLAR is followed */
+  __IO uint32_t  CMDR;      /*!< Loaded into CMDR when linked list in CLAR is followed */
+}MDMA_LinkNode_TypeDef;
+
 /**
   * @brief DMA2D Controller
   */
@@ -2407,7 +2421,6 @@ typedef struct
 #define MDMA_Channel13_BASE   (MDMA_BASE + 0x00000380UL)
 #define MDMA_Channel14_BASE   (MDMA_BASE + 0x000003C0UL)
 #define MDMA_Channel15_BASE   (MDMA_BASE + 0x00000400UL)
-#define MDMA_Channel16_BASE   (MDMA_BASE + 0x00000440UL)
 
 /* GFXMMU virtual buffers base address */
 #define GFXMMU_VIRTUAL_BUFFERS_BASE  (0x25000000UL)
@@ -2611,6 +2624,7 @@ typedef struct
 #define DMA2_Stream5        ((DMA_Stream_TypeDef *) DMA2_Stream5_BASE)
 #define DMA2_Stream6        ((DMA_Stream_TypeDef *) DMA2_Stream6_BASE)
 #define DMA2_Stream7        ((DMA_Stream_TypeDef *) DMA2_Stream7_BASE)
+#define DMA2_Stream(N)      ((DMA_Stream_TypeDef *)(DMA2_Stream0_BASE + ((N) * (DMA2_Stream1_BASE - DMA2_Stream0_BASE))))
 
 #define DMA1                ((DMA_TypeDef *) DMA1_BASE)
 #define DMA1_Stream0        ((DMA_Stream_TypeDef *) DMA1_Stream0_BASE)
@@ -2621,7 +2635,7 @@ typedef struct
 #define DMA1_Stream5        ((DMA_Stream_TypeDef *) DMA1_Stream5_BASE)
 #define DMA1_Stream6        ((DMA_Stream_TypeDef *) DMA1_Stream6_BASE)
 #define DMA1_Stream7        ((DMA_Stream_TypeDef *) DMA1_Stream7_BASE)
-
+#define DMA1_Stream(N)      ((DMA_Stream_TypeDef *)(DMA1_Stream0_BASE + ((N) * (DMA1_Stream1_BASE - DMA1_Stream0_BASE))))
 
 #define DMAMUX1              ((DMAMUX_Channel_TypeDef *) DMAMUX1_BASE)
 #define DMAMUX1_Channel0     ((DMAMUX_Channel_TypeDef *) DMAMUX1_Channel0_BASE)
@@ -2712,7 +2726,7 @@ typedef struct
 #define MDMA_Channel13      ((MDMA_Channel_TypeDef *)MDMA_Channel13_BASE)
 #define MDMA_Channel14      ((MDMA_Channel_TypeDef *)MDMA_Channel14_BASE)
 #define MDMA_Channel15      ((MDMA_Channel_TypeDef *)MDMA_Channel15_BASE)
-
+#define MDMA_Channel(N)     ((MDMA_Channel_TypeDef *)(MDMA_Channel0_BASE + ((N) * (MDMA_Channel1_BASE - MDMA_Channel0_BASE))))
 
 #define USB1_OTG_HS         ((USB_OTG_GlobalTypeDef *) USB1_OTG_HS_PERIPH_BASE)
 
@@ -11400,6 +11414,9 @@ typedef struct
 #define IWDG_KR_KEY_Pos      (0U)
 #define IWDG_KR_KEY_Msk      (0xFFFFUL << IWDG_KR_KEY_Pos)                     /*!< 0x0000FFFF */
 #define IWDG_KR_KEY          IWDG_KR_KEY_Msk                                   /*!<Key value (write only, read 0000h)  */
+#define IWDG_KR_KEY_ACCESS   (0x5555UL << IWDG_KR_KEY_Pos)                     /*!<Value to write to access PR, WINR, RLR */
+#define IWDG_KR_KEY_SERVICE  (0xAAAAUL << IWDG_KR_KEY_Pos)                     /*!<Value to write to service IWDG */
+#define IWDG_KR_KEY_START    (0xCCCCUL << IWDG_KR_KEY_Pos)                     /*!<Value to write to start IWDG */
 
 /*******************  Bit definition for IWDG_PR register  ********************/
 #define IWDG_PR_PR_Pos       (0U)
