@@ -121,7 +121,6 @@ Infinite_Loop:
 *******************************************************************************/
    .section  .isr_vector,"a",%progbits
   .type  g_pfnVectors, %object
-  .size  g_pfnVectors, .-g_pfnVectors
 
 
 g_pfnVectors:
@@ -142,6 +141,8 @@ g_pfnVectors:
   .word  0
   .word  PendSV_Handler
   .word  SysTick_Handler
+
+  .size  g_pfnVectors, .-g_pfnVectors
 
   /* External Interrupts */
   .word     WWDG_IRQHandler                   /* Window WatchDog Interrupt ( wwdg1_it, wwdg2_it) */
