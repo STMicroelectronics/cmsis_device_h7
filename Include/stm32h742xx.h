@@ -25013,10 +25013,6 @@ typedef struct
 #define IS_ADC_COMMON_INSTANCE(INSTANCE) (((INSTANCE) == ADC12_COMMON) ||\
                                           ((INSTANCE) == ADC3_COMMON))
 
-#define TEMPSENSOR_CAL2_TEMP ((((DBGMCU->IDCODE) >> 16) <= ((uint32_t)0x1003)) ? 110L : 130L) /* Temperature
-at which temperature sensor has been calibrated in production for data into TEMPSENSOR_CAL2_ADDR 110 °C for revision Y
-and 130 °C for revision V (tolerance: +-5 DegC) (unit: DegC). */
-
 /******************************** COMP Instances ******************************/
 #define IS_COMP_ALL_INSTANCE(INSTANCE) (((INSTANCE) == COMP1) || \
                                        ((INSTANCE) == COMP2))
