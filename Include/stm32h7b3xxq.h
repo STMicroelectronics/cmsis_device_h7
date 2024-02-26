@@ -2408,7 +2408,6 @@ typedef struct
 #define MDMA_Channel13_BASE   (MDMA_BASE + 0x00000380UL)
 #define MDMA_Channel14_BASE   (MDMA_BASE + 0x000003C0UL)
 #define MDMA_Channel15_BASE   (MDMA_BASE + 0x00000400UL)
-#define MDMA_Channel16_BASE   (MDMA_BASE + 0x00000440UL)
 
 /* GFXMMU virtual buffers base address */
 #define GFXMMU_VIRTUAL_BUFFERS_BASE  (0x25000000UL)
