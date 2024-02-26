@@ -231,7 +231,7 @@ typedef enum
 #include "core_cm4.h"                     /*!< Cortex-M4 processor and core peripherals      */
 #else  /* CORE_CM7 */
 #ifdef CORE_CM7
-#define __CM7_REV               0x0100U   /*!< Cortex-M7 revision r1p0                       */
+#define __CM7_REV               0x0101U   /*!< Cortex-M7 revision r1p1                       */
 #define __MPU_PRESENT             1U       /*!< CM7 provides an MPU                           */
 #define __NVIC_PRIO_BITS          4U       /*!< CM7 uses 4 Bits for the Priority Levels       */
 #define __Vendor_SysTickConfig    0U       /*!< Set to 1 if different SysTick Config is used  */
@@ -247,7 +247,6 @@ typedef enum
 /**
   * @}
   */
-
 
 
 
