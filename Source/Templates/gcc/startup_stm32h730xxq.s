@@ -142,8 +142,6 @@ g_pfnVectors:
   .word  PendSV_Handler
   .word  SysTick_Handler
 
-  .size  g_pfnVectors, .-g_pfnVectors
-
   /* External Interrupts */
   .word     WWDG_IRQHandler                   /* Window WatchDog              */
   .word     PVD_AVD_IRQHandler                /* PVD/AVD through EXTI Line detection */
@@ -308,6 +306,8 @@ g_pfnVectors:
   .word     FDCAN3_IT1_IRQHandler             /* FDCAN3 interrupt line 1  */
   .word     TIM23_IRQHandler                  /* TIM23 global interrupt   */
   .word     TIM24_IRQHandler                  /* TIM24 global interrupt   */
+
+  .size  g_pfnVectors, .-g_pfnVectors
 
 /*******************************************************************************
 *

@@ -142,8 +142,6 @@ g_pfnVectors:
   .word  PendSV_Handler
   .word  SysTick_Handler
 
-  .size  g_pfnVectors, .-g_pfnVectors
-
   /* External Interrupts */
   .word     WWDG_IRQHandler                   /* Window WatchDog              */
   .word     PVD_AVD_IRQHandler                /* PVD/AVD through EXTI Line detection */
@@ -295,6 +293,8 @@ g_pfnVectors:
   .word     0                                 /* Reserved                   */
   .word     0                                 /* Reserved                   */
   .word     WAKEUP_PIN_IRQHandler             /* Interrupt for all 6 wake-up pins */
+
+  .size  g_pfnVectors, .-g_pfnVectors
 
 /*******************************************************************************
 *

@@ -142,8 +142,6 @@ g_pfnVectors:
   .word  PendSV_Handler
   .word  SysTick_Handler
 
-  .size  g_pfnVectors, .-g_pfnVectors
-
   /* External Interrupts */
   .word     WWDG_IRQHandler                   /* Window WatchDog              */
   .word     PVD_PVM_IRQHandler                /* PVD/PVM through EXTI Line detection */
@@ -300,6 +298,8 @@ g_pfnVectors:
   .word     0                                 /* Reserved                     */
   .word     GFXMMU_IRQHandler                 /* GFXMMU                       */
   .word     BDMA1_IRQHandler                  /* BDMA1                        */
+
+  .size  g_pfnVectors, .-g_pfnVectors
 
 /*******************************************************************************
 *

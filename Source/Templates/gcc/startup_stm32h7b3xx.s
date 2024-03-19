@@ -141,8 +141,6 @@ g_pfnVectors:
   .word  0
   .word  PendSV_Handler
   .word  SysTick_Handler
-
-  .size  g_pfnVectors, .-g_pfnVectors
   
   /* External Interrupts */
   .word     WWDG_IRQHandler                   /* Window WatchDog              */
@@ -300,6 +298,8 @@ g_pfnVectors:
   .word     OTFDEC2_IRQHandler                /* OTFDEC2                      */
   .word     GFXMMU_IRQHandler                 /* GFXMMU                       */
   .word     BDMA1_IRQHandler                  /* BDMA1                        */
+
+  .size  g_pfnVectors, .-g_pfnVectors
 
 /*******************************************************************************
 *
