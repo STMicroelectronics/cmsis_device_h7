@@ -11981,7 +11981,7 @@ typedef struct
 #define FMC_SDCMR_MODE             FMC_SDCMR_MODE_Msk                          /*!<MODE[2:0] bits (Command mode) */
 #define FMC_SDCMR_MODE_0           (0x1UL << FMC_SDCMR_MODE_Pos)                /*!< 0x00000001 */
 #define FMC_SDCMR_MODE_1           (0x2UL << FMC_SDCMR_MODE_Pos)                /*!< 0x00000002 */
-#define FMC_SDCMR_MODE_2           (0x3UL << FMC_SDCMR_MODE_Pos)                /*!< 0x00000003 */
+#define FMC_SDCMR_MODE_2           (0x4UL << FMC_SDCMR_MODE_Pos)                /*!< 0x00000004 */
 
 #define FMC_SDCMR_CTB2_Pos         (3U)
 #define FMC_SDCMR_CTB2_Msk         (0x1UL << FMC_SDCMR_CTB2_Pos)               /*!< 0x00000008 */
@@ -22128,7 +22128,7 @@ typedef struct
 #define DBGMCU_APB1HFZ1_DBG_TIM23_Pos     (24U)
 #define DBGMCU_APB1HFZ1_DBG_TIM23_Msk     (0x1UL << DBGMCU_APB1HFZ1_DBG_TIM23_Pos) /*!< 0x01000000 */
 #define DBGMCU_APB1HFZ1_DBG_TIM23          DBGMCU_APB1HFZ1_DBG_TIM23_Msk
-#define DBGMCU_APB1HFZ1_DBG_TIM24_Pos     (24U)
+#define DBGMCU_APB1HFZ1_DBG_TIM24_Pos     (25U)
 #define DBGMCU_APB1HFZ1_DBG_TIM24_Msk     (0x1UL << DBGMCU_APB1HFZ1_DBG_TIM24_Pos) /*!< 0x02000000 */
 #define DBGMCU_APB1HFZ1_DBG_TIM24          DBGMCU_APB1HFZ1_DBG_TIM24_Msk
 /********************  Bit definition for APB2FZ1 register  ************/

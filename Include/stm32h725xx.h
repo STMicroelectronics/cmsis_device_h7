@@ -21653,7 +21653,7 @@ typedef struct
 #define DBGMCU_APB1HFZ1_DBG_TIM23_Pos     (24U)
 #define DBGMCU_APB1HFZ1_DBG_TIM23_Msk     (0x1UL << DBGMCU_APB1HFZ1_DBG_TIM23_Pos) /*!< 0x01000000 */
 #define DBGMCU_APB1HFZ1_DBG_TIM23          DBGMCU_APB1HFZ1_DBG_TIM23_Msk
-#define DBGMCU_APB1HFZ1_DBG_TIM24_Pos     (24U)
+#define DBGMCU_APB1HFZ1_DBG_TIM24_Pos     (25U)
 #define DBGMCU_APB1HFZ1_DBG_TIM24_Msk     (0x1UL << DBGMCU_APB1HFZ1_DBG_TIM24_Pos) /*!< 0x02000000 */
 #define DBGMCU_APB1HFZ1_DBG_TIM24          DBGMCU_APB1HFZ1_DBG_TIM24_Msk
 /********************  Bit definition for APB2FZ1 register  ************/
